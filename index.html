@@ -47,3 +47,74 @@
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
+<script>
+  // تسجيل Service Worker محسن
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+          console.log('✅ Service Worker مسجل بنجاح:', registration.scope);
+          
+          // التحقق من حالة التخزين
+          registration.update();
+        })
+        .catch(function(error) {
+          console.log('❌ فشل تسجيل Service Worker:', error);
+        });
+    });
+
+    // تحديث Service Worker عند التحميل
+    navigator.serviceWorker.ready.then(registration => {
+      console.log('🎯 Service Worker جاهز للعمل');
+    });
+  }
+
+  // إدارة حالة الاتصال
+  window.addEventListener('online', function() {
+    console.log('✅ أصبحت متصلاً بالإنترنت');
+    document.body.classList.remove('offline');
+  });
+
+  window.addEventListener('offline', function() {
+    console.log('⚡ أنت غير متصل - التطبيق يعمل محلياً');
+    document.body.classList.add('offline');
+  });
+
+  // التحقق من الاتصال عند التحميل
+  if (!navigator.onLine) {
+    document.body.classList.add('offline');
+    console.log('🔋 التطبيق يعمل ببطارية محلية');
+  }
+</script>
+
+<style>
+  /* إضافة مؤشر عدم الاتصال */
+  .offline-indicator {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 10000;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+
+  body.offline .offline-indicator {
+    display: block;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+</style>
+
+<div class="offline-indicator" id="offlineIndicator">
+  ⚡ التطبيق يعمل بدون اتصال بالإنترنت
+</div>
