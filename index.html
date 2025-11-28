@@ -1,118 +1,59 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة تعمل بدون نت</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #2c3e50;
-            margin: 0;
-            padding: 20px;
-            color: white;
-            text-align: center;
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abo Suhail Calculator</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#050A14" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+          }
         }
-        .calculator {
-            background: #34495e;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        .display {
-            background: #1a252f;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 24px;
-            min-height: 60px;
-        }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        button {
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            background: #3498db;
-            color: white;
-            font-size: 18px;
-        }
-        .equals { background: #27ae60; }
-        .clear { background: #e74c3c; }
-    </style>
+      }
+    }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://aistudiocdn.com/react@^19.2.0",
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+      "react/": "https://aistudiocdn.com/react@^19.2.0/",
+      "vite": "https://aistudiocdn.com/vite@^7.2.4",
+      "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+    }
+  }
+  </script>
 </head>
 <body>
-    <h1>🧮 الحاسبة البسيطة</h1>
-    <p>تعمل بدون انترنت ✅</p>
-    
-    <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button onclick="clearDisplay()" class="clear">C</button>
-            <button onclick="appendToDisplay('/')">/</button>
-            <button onclick="appendToDisplay('*')">×</button>
-            <button onclick="appendToDisplay('-')">-</button>
-            
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('+')">+</button>
-            
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="calculate()" class="equals">=</button>
-            
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('0')">0</button>
-        </div>
-    </div>
-
-    <script>
-        let display = document.getElementById('display');
-        let currentInput = '0';
-
-        function updateDisplay() {
-            display.textContent = currentInput;
-        }
-
-        function appendToDisplay(value) {
-            if (currentInput === '0') {
-                currentInput = value;
-            } else {
-                currentInput += value;
-            }
-            updateDisplay();
-        }
-
-        function clearDisplay() {
-            currentInput = '0';
-            updateDisplay();
-        }
-
-        function calculate() {
-            try {
-                currentInput = eval(currentInput.replace('×', '*')).toString();
-            } catch {
-                currentInput = 'خطأ';
-            }
-            updateDisplay();
-        }
-
-        // Service Worker بسيط
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('✅ يعمل بدون انترنت'))
-                .catch(() => console.log('ℹ️ يعمل مع انترنت'));
-        }
-    </script>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+  
+  <!-- ✅ سكريبت تسجيل الـ Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+          .then(registration => {
+            console.log('✅ SW registered!');
+            registration.update();
+          })
+          .catch(error => console.log('❌ SW failed:', error));
+      });
+    }
+  </script>
 </body>
 </html>

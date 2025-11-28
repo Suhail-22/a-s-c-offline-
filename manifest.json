@@ -1,9 +1,19 @@
 {
-  "name": "حاسبة بسيطة",
-  "short_name": "حاسبة",
+  "name": "Abo Suhail Calculator",
+  "short_name": "ASC Calc",
+  "description": "آلة حاسبة متقدمة وذكية",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#2c3e50",
-  "theme_color": "#2c3e50",
-  "icons": []
+  "background_color": "#050A14",
+  "theme_color": "#050A14",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
 }
