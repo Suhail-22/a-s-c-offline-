@@ -1,8 +1,9 @@
 {
-  "name": "Abo Suhail Calculator",
-  "short_name": "ASC Calc",
-  "description": "آلة حاسبة متقدمة وذكية",
+  "name": "ASC Calculator",
+  "short_name": "ASC Calc", 
+  "description": "Advanced calculator with offline support",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#050A14",
   "theme_color": "#050A14",
@@ -12,24 +13,34 @@
   "categories": ["utilities", "productivity"],
   "icons": [
     {
-      "src": "/assets/icon-48-48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
       "src": "/assets/icon-72-72.png",
       "sizes": "72x72",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/assets/icon-96-96.png",
-      "sizes": "96x96",
-      "type": "image/png"
+      "sizes": "96x96", 
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-128-128.png",
+      "sizes": "128x128",
+      "type": "image/png", 
+      "purpose": "any"
     },
     {
       "src": "/assets/icon-144-144.png",
       "sizes": "144x144",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-152-152.png", 
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/assets/icon-192-192.png",
@@ -38,8 +49,14 @@
       "purpose": "any maskable"
     },
     {
+      "src": "/assets/icon-384-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/assets/icon-512-512.png",
-      "sizes": "512x512",
+      "sizes": "512x512", 
       "type": "image/png",
       "purpose": "any maskable"
     }

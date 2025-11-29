@@ -1,81 +1,72 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abo Suhail Calculator</title>
-  
-  <!-- ملف Manifest -->
-  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
-  <meta name="theme-color" content="#050A14" />
-  
-  <!-- === الإضافات الجديدة لتحسين PWA === -->
-  <!-- الأيقونات لتحسين PWA -->
-  <link rel="icon" type="image/png" href="/assets/icon-192-192.png">
-  <link rel="apple-touch-icon" href="/assets/icon-192-192.png">
-  
-  <!-- تحسينات SEO -->
-  <meta name="description" content="آلة حاسبة متقدمة مع وظائف متعددة ودعم العمل دون اتصال">
-  <meta name="keywords" content="آلة حاسبة, calculator, math, حساب, Abo Suhail">
-  
-  <!-- تأكيد دعم PWA -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="application-name" content="ASC Calc">
-  <meta name="apple-mobile-web-app-title" content="ASC Calc">
-  <!-- === نهاية الإضافات الجديدة === -->
-  
-  <!-- الخطوط -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Tajawal', 'sans-serif'],
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASC Calculator</title>
+    
+    <!-- PWA Essentials -->
+    <meta name="theme-color" content="#050A14">
+    <meta name="description" content="آلة حاسبة متقدمة مع دعم العمل دون اتصال">
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+    
+    <!-- Icons -->
+    <link rel="icon" href="/assets/icon-192-192.png">
+    <link rel="apple-touch-icon" href="/assets/icon-192-192.png">
+    
+    <!-- PWA Capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ASC Calc">
+    
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <!-- Import Map -->
-  <script type="importmap">
-  {
-    "imports": {
-      "react": "https://aistudiocdn.com/react@^19.2.0",
-      "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-      "react/": "https://aistudiocdn.com/react@^19.2.0/",
-      "vite": "https://aistudiocdn.com/vite@^7.2.4",
-      "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://aistudiocdn.com/react@^19.2.0",
+            "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/", 
+            "react/": "https://aistudiocdn.com/react@^19.2.0/",
+            "vite": "https://aistudiocdn.com/vite@^7.2.4",
+            "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+        }
     }
-  }
-  </script>
+    </script>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-  
-  <!-- ✅ سكريبت تسجيل الـ Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(registration => {
-            console.log('✅ Service Worker registered successfully!');
-            registration.update();
-          })
-          .catch(error => console.log('❌ Service Worker registration failed:', error));
-      });
-    }
-  </script>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('SW registered: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('SW failed: ', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
