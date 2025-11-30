@@ -7,11 +7,12 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['assets/icon.svg'],
+      // ✅ تضمين assets من الجذر
+      includeAssets: ['assets/**/*', 'offline.html'],
       manifest: {
         name: 'Abo Suhail Calculator',
         short_name: 'ASC Calc',
-        description: 'آلة حاسبة متقدمة وذكية',
+        description: 'آلة حاسبة متقدمة وذكية تعمل بدون إنترنت',
         start_url: '/',
         display: 'standalone',
         background_color: '#050A14',
@@ -21,18 +22,9 @@ export default defineConfig({
         dir: 'rtl',
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg}'],
+        // ✅ تضمين كل الملفات من الجذر
+        globPatterns: ['**/*.{js,css,html,svg,png,json}'],
         runtimeCaching: [
-          {
-            urlPattern: /\/$/,
-            handler: 'NetworkFirst',
-            options: { cacheName: 'html-cache' }
-          },
-          {
-            urlPattern: /\.(?:js|css)$/,
-            handler: 'CacheFirst',
-            options: { cacheName: 'static-resources' }
-          },
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
@@ -51,5 +43,13 @@ export default defineConfig({
     })
   ],
   server: { host: '0.0.0.0', port: 3000 },
-  build: { outDir: 'dist' }
+  build: { 
+    outDir: 'dist',
+    // ✅ نسخ assets من الجذر إلى dist/assets
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name][extname]'
+      }
+    }
+  }
 });
