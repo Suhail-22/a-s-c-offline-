@@ -3,12 +3,14 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  // ✅ جعل الجذر هو مجلد public
+  publicDir: '.',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      // ✅ تضمين assets من الجذر
-      includeAssets: ['assets/**/*', 'offline.html'],
+      // ✅ تضمين الملفات من الجذر مباشرة
+      includeAssets: ['offline.html', 'assets/**/*', 'manifest.json'],
       manifest: {
         name: 'Abo Suhail Calculator',
         short_name: 'ASC Calc',
@@ -22,8 +24,10 @@ export default defineConfig({
         dir: 'rtl',
       },
       workbox: {
-        // ✅ تضمين كل الملفات من الجذر
+        // ✅ تخزين كل الملفات من الجذر
         globPatterns: ['**/*.{js,css,html,svg,png,json}'],
+        // ✅ استثناء الملفات غير الضرورية
+        globIgnores: ['node_modules/**/*', 'dist/**/*', '.git/**/*', 'src/**/*.ts', 'src/**/*.tsx'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -36,7 +40,7 @@ export default defineConfig({
             options: { cacheName: 'tailwind-cdn', cacheableResponse: { statuses: [0, 200] } }
           }
         ],
-        navigateFallback: '/index.html',
+        navigateFallback: '/offline.html',
         skipWaiting: true,
         clientsClaim: true
       }
@@ -45,11 +49,9 @@ export default defineConfig({
   server: { host: '0.0.0.0', port: 3000 },
   build: { 
     outDir: 'dist',
-    // ✅ نسخ assets من الجذر إلى dist/assets
+    // ✅ منع نسخ ملفات المصدر إلى dist
     rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name][extname]'
-      }
+      external: ['src/**/*.ts', 'src/**/*.tsx']
     }
   }
 });

@@ -1,7 +1,7 @@
 {
   "name": "Abo Suhail Calculator",
   "short_name": "ASC Calc",
-  "description": "آلة حاسبة متقدمة وذكية تعمل بدون إنترنت مع حسابات ضريبية دقيقة",
+  "description": "آلة حاسبة متقدمة وذكية تعمل بدون إنترنت",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050A14",
@@ -9,63 +9,13 @@
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
-  "categories": ["calculator", "productivity", "finance"],
   "icons": [
-    {
-      "src": "/assets/icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/assets/screenshot-1.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "/assets/screenshot-2.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
+    { "src": "/assets/icon-72.png", "sizes": "72x72", "type": "image/png" },
+    { "src": "/assets/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/assets/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "/assets/icon-144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "/assets/icon-152.png", "sizes": "152x152", "type": "image/png" },
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
